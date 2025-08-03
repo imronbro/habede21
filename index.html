@@ -4,89 +4,93 @@
   <meta charset="UTF-8">
   <title>Surat untuk Tsamara</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@400;600&display=swap');
 
     body {
       margin: 0;
-      background: linear-gradient(135deg, #fceabb, #f8b500);
+      padding: 0;
+      background: linear-gradient(to top right, #ffd6ec, #fff0f5);
+      font-family: 'Poppins', sans-serif;
       height: 100vh;
       display: flex;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
+      flex-direction: column;
       overflow: hidden;
-      font-family: 'Georgia', serif;
     }
 
-    .container {
-      perspective: 1200px;
-    }
-
-    .card {
-      width: 300px;
-      height: 200px;
+    .envelope-wrapper {
       position: relative;
-      transform-style: preserve-3d;
-      transition: transform 1s;
+      width: 260px;
+      height: 160px;
       cursor: pointer;
+      transform-style: preserve-3d;
+      transition: transform 1s ease;
     }
 
-    .card:hover {
-      transform: rotateY(180deg);
-    }
-
-    .front, .back {
+    .envelope {
       position: absolute;
       width: 100%;
       height: 100%;
-      border-radius: 15px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-      backface-visibility: hidden;
+      background: #ffc0cb;
+      border: 2px solid #f48fb1;
+      border-radius: 6px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      overflow: hidden;
     }
 
-    .front {
+    .flap {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0;
+      height: 0;
+      border-left: 130px solid transparent;
+      border-right: 130px solid transparent;
+      border-bottom: 80px solid #f8a5c2;
+      z-index: 2;
+      transform-origin: top;
+      transition: transform 1s ease;
+    }
+
+    .letter {
+      position: absolute;
+      top: 30px;
+      left: 15px;
+      width: 230px;
+      height: 100px;
       background: #fff;
-      background-image: linear-gradient(to top right, #f8b500, #fceabb);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
+      border-radius: 4px;
+      padding: 10px;
+      box-sizing: border-box;
+      z-index: 1;
+      text-align: center;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4em;
+      color: #c2185b;
+      opacity: 0;
+      transition: opacity 1s ease;
     }
 
-    .front h2 {
-      font-family: 'Great Vibes', cursive;
-      font-size: 2.2em;
-      color: #4d2c2c;
-      margin: 0;
-    }
-
-    .back {
-      background: #ffffff;
-      transform: rotateY(180deg);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .back h3 {
+    .label {
+      margin-top: 200px;
       font-size: 1.2em;
-      color: #555;
+      color: #b3125a;
+      font-family: 'Georgia', serif;
     }
 
-    .open-btn {
-      margin-top: 15px;
-      padding: 10px 20px;
-      background: #e84166;
-      color: white;
-      border: none;
-      border-radius: 25px;
-      font-size: 1em;
-      cursor: pointer;
-      text-decoration: none;
+    .emoji {
+      position: fixed;
+      top: -50px;
+      font-size: 24px;
+      animation: fall linear infinite;
+      z-index: 0;
+      user-select: none;
     }
 
-    .open-btn:hover {
-      background: #c62b4b;
+    @keyframes fall {
+      0% { transform: translateY(-50px) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(120vh) rotate(360deg); opacity: 0; }
     }
 
     audio {
@@ -94,23 +98,43 @@
     }
   </style>
 </head>
-<body>
-  <div class="container" onclick="document.getElementById('bgm').play()">
-    <div class="card">
-      <div class="front">
-        <h2>📩 Surat untuk Tsamara</h2>
-        <p>Klik untuk membuka...</p>
-      </div>
-      <div class="back">
-        <h3>Dengan cinta dari seseorang yang menyayangimu 💌</h3>
-        <a class="open-btn" href="surat.html">Buka Surat</a>
-      </div>
-    </div>
-  </div>
+<body onclick="document.getElementById('bgm').play()">
 
-  <audio id="bgm" autoplay loop>
-    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
-    Browser kamu tidak mendukung audio.
-  </audio>
+<div class="envelope-wrapper" onclick="openEnvelope()">
+  <div class="envelope">
+    <div class="flap" id="flap"></div>
+    <div class="letter" id="letter">Untuk Tsamara 💖</div>
+  </div>
+</div>
+<div class="label">Klik amplop untuk membuka surat</div>
+
+<audio id="bgm" autoplay loop>
+  <source src="https://cdn.pixabay.com/download/audio/2023/01/05/audio_1f3ab0f176.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+  function openEnvelope() {
+    document.getElementById('flap').style.transform = 'rotateX(-180deg)';
+    document.getElementById('letter').style.opacity = 1;
+    setTimeout(() => {
+      window.location.href = 'surat.html';
+    }, 2200);
+  }
+
+  // Emoji efek jatuh
+  const emojis = ["🎂", "🍰", "🧁", "🍭", "🍬", "🎀"];
+  function createEmoji() {
+    const el = document.createElement("div");
+    el.classList.add("emoji");
+    el.style.left = Math.random() * 100 + "vw";
+    el.style.fontSize = (Math.random() * 20 + 24) + "px";
+    el.style.animationDuration = (Math.random() * 3 + 2) + "s";
+    el.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+    document.body.appendChild(el);
+    setTimeout(() => el.remove(), 6000);
+  }
+  setInterval(createEmoji, 300);
+</script>
+
 </body>
 </html>
