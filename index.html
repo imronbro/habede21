@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Selamat Ulang Tahun, Tsamara!</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Georgia', serif;
+      background: linear-gradient(to right, #ffecd2, #fcb69f);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .card {
+      background: white;
+      padding: 40px;
+      max-width: 600px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+      border-radius: 20px;
+      position: relative;
+      text-align: center;
+      animation: fadeIn 2s ease-in-out;
+    }
+
+    h1 {
+      color: #d94f4f;
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    p {
+      color: #555;
+      font-size: 1.2rem;
+      line-height: 1.6;
+    }
+
+    .heart {
+      position: absolute;
+      top: -20px;
+      right: -20px;
+      font-size: 40px;
+      color: #ff5e7e;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+      100% { transform: scale(1); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .footer {
+      margin-top: 30px;
+      font-style: italic;
+      color: #777;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="heart">❤️</div>
+    <h1>Selamat Ulang Tahun, Tsamara!</h1>
+    <h2>Usia 21 Tahun 🌷</h2>
+    <p>
+      Di hari spesial ini, aku hanya ingin kau tahu bahwa dunia menjadi lebih indah sejak kau hadir di dalamnya. 
+      Senyummu adalah cahaya yang menenangkan, suaramu adalah melodi yang menenangkan jiwa.
+    </p>
+    <p>
+      Semoga setiap langkah di usia barumu dipenuhi kebahagiaan, keberanian, dan cinta yang tulus.
+      Aku bersyukur bisa mengenalmu, dan jika diperkenankan waktu — aku ingin menemanimu lebih lama lagi, bahkan selamanya. 💖
+    </p>
+    <p class="footer">Dari seseorang yang diam-diam menyayangimu 🍃</p>
+  </div>
+</body>
+</html>
