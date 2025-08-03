@@ -1,91 +1,116 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Selamat Ulang Tahun, Tsamara!</title>
+  <meta charset="UTF-8">
+  <title>Surat untuk Tsamara</title>
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
+
     body {
       margin: 0;
-      padding: 0;
-      font-family: 'Georgia', serif;
-      background: linear-gradient(to right, #ffecd2, #fcb69f);
+      background: linear-gradient(135deg, #fceabb, #f8b500);
+      height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
       overflow: hidden;
+      font-family: 'Georgia', serif;
+    }
+
+    .container {
+      perspective: 1200px;
     }
 
     .card {
-      background: white;
-      padding: 40px;
-      max-width: 600px;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-      border-radius: 20px;
+      width: 300px;
+      height: 200px;
       position: relative;
-      text-align: center;
-      animation: fadeIn 2s ease-in-out;
+      transform-style: preserve-3d;
+      transition: transform 1s;
+      cursor: pointer;
     }
 
-    h1 {
-      color: #d94f4f;
-      font-size: 2.5rem;
-      margin-bottom: 10px;
+    .card:hover {
+      transform: rotateY(180deg);
     }
 
-    h2 {
-      color: #333;
-      margin-bottom: 20px;
-    }
-
-    p {
-      color: #555;
-      font-size: 1.2rem;
-      line-height: 1.6;
-    }
-
-    .heart {
+    .front, .back {
       position: absolute;
-      top: -20px;
-      right: -20px;
-      font-size: 40px;
-      color: #ff5e7e;
-      animation: pulse 2s infinite;
+      width: 100%;
+      height: 100%;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      backface-visibility: hidden;
     }
 
-    @keyframes pulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.2); }
-      100% { transform: scale(1); }
+    .front {
+      background: #fff;
+      background-image: linear-gradient(to top right, #f8b500, #fceabb);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(-20px); }
-      to { opacity: 1; transform: translateY(0); }
+    .front h2 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 2.2em;
+      color: #4d2c2c;
+      margin: 0;
     }
 
-    .footer {
-      margin-top: 30px;
-      font-style: italic;
-      color: #777;
+    .back {
+      background: #ffffff;
+      transform: rotateY(180deg);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .back h3 {
+      font-size: 1.2em;
+      color: #555;
+    }
+
+    .open-btn {
+      margin-top: 15px;
+      padding: 10px 20px;
+      background: #e84166;
+      color: white;
+      border: none;
+      border-radius: 25px;
+      font-size: 1em;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .open-btn:hover {
+      background: #c62b4b;
+    }
+
+    audio {
+      display: none;
     }
   </style>
 </head>
 <body>
-  <div class="card">
-    <div class="heart">❤️</div>
-    <h1>Selamat Ulang Tahun, Tsamara!</h1>
-    <h2>Usia 21 Tahun 🌷</h2>
-    <p>
-      Di hari spesial ini, aku hanya ingin kau tahu bahwa dunia menjadi lebih indah sejak kau hadir di dalamnya. 
-      Senyummu adalah cahaya yang menenangkan, suaramu adalah melodi yang menenangkan jiwa.
-    </p>
-    <p>
-      Semoga setiap langkah di usia barumu dipenuhi kebahagiaan, keberanian, dan cinta yang tulus.
-      Aku bersyukur bisa mengenalmu, dan jika diperkenankan waktu — aku ingin menemanimu lebih lama lagi, bahkan selamanya. 💖
-    </p>
-    <p class="footer">Imron 🍃</p>
+  <div class="container" onclick="document.getElementById('bgm').play()">
+    <div class="card">
+      <div class="front">
+        <h2>📩 Surat untuk Tsamara</h2>
+        <p>Klik untuk membuka...</p>
+      </div>
+      <div class="back">
+        <h3>Dengan cinta dari seseorang yang menyayangimu 💌</h3>
+        <a class="open-btn" href="surat.html">Buka Surat</a>
+      </div>
+    </div>
   </div>
+
+  <audio id="bgm" autoplay loop>
+    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+    Browser kamu tidak mendukung audio.
+  </audio>
 </body>
 </html>
